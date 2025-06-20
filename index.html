@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshtrack</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍓</text></svg>">
+</head>
+<body>
+    <!-- Pantalla de Login -->
+    <div id="loginScreen" class="screen active">
+        <div class="form-container">
+            <div class="logo-container">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTAwIj48c3R5bGU+LmxvZ28tdGV4dHtmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtd2VpZ2h0OmJvbGQ7ZmlsbDojMDA2ZjdmO30uc3RyYXdiZXJyeXtmaWxsOiNGRjQyNTI7fTwvc3R5bGU+PHBhdGggZD0iTTEwIDQwTDUwIDkwTDkwIDQwWiIgY2xhc3M9InN0cmF3YmVycnkiLz48dGV4dCB4PSI1MCUiIHk9IjYwJSIgY2xhc3M9ImxvZ28tdGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1zaXplPSIyNCI+RnJlc2h0cmFjazwvdGV4dD48L3N2Zz4=" alt="Freshtrack Logo" class="logo">
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="emailInput" placeholder="operario@freshtrack.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="passwordInput" placeholder="1234" required>
+                </div>
+                <button type="submit" class="primary-btn">Sign In</button>
+                <a href="#" id="forgotPasswordLink" class="text-link">Forgot password?</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pantalla de Operario -->
+    <div id="operatorScreen" class="screen">
+        <div class="dashboard">
+            <h2>Operario</h2>
+            
+            <div class="function-card">
+                <h3>Pantalla de Escaneo QR de Cajas</h3>
+                <div id="scannerContainer">
+                    <video id="qrScanner" width="300" height="200" style="border: 1px solid #ccc; display: none;"></video>
+                    <canvas id="qrCanvas" style="display: none;"></canvas>
+                </div>
+                <button id="scanBtn" class="primary-btn">Iniciar Escaneo</button>
+                <div id="scanResult" class="result-container hidden">
+                    <h4>Resultado del escaneo:</h4>
+                    <div id="scanData"></div>
+                </div>
+            </div>
+            
+            <div class="function-card">
+                <h3>Lecturas en tiempo real</h3>
+                <div id="sensorReadings" class="sensor-grid"></div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="exit-btn secondary-btn">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Supervisor -->
+    <div id="supervisorScreen" class="screen">
+        <div class="dashboard">
+            <h2>Supervisor</h2>
+            
+            <div class="function-card">
+                <h3>Dashboard general</h3>
+                <div class="dashboard-grid">
+                    <div class="dashboard-item">
+                        <h4>Inventario actual</h4>
+                        <div class="metric">1,245 <span>cajas</span></div>
+                        <div class="trend up">↑ 5% vs ayer</div>
+                    </div>
+                    <div class="dashboard-item">
+                        <h4>Vida útil promedio</h4>
+                        <div class="metric">5.2 <span>días</span></div>
+                        <div class="trend down">↓ 0.3 días</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="function-card">
+                <h3>Reportes Generados</h3>
+                <div id="reportsList" class="result-container">
+                    <div class="report-item">
+                        <div class="report-info">
+                            <span class="report-id">REP-2023-001</span>
+                            <span class="report-date">15/06/2023</span>
+                            <span class="report-status verified">Completado</span>
+                        </div>
+                        <button class="view-report-btn primary-btn">Ver Reporte</button>
+                    </div>
+                    <div class="report-item">
+                        <div class="report-info">
+                            <span class="report-id">REP-2023-002</span>
+                            <span class="report-date">16/06/2023</span>
+                            <span class="report-status pending">En progreso</span>
+                        </div>
+                        <button class="view-report-btn primary-btn">Ver Reporte</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="exit-btn secondary-btn">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Auditor -->
+    <div id="auditorScreen" class="screen">
+        <div class="dashboard">
+            <h2>Auditor Externo</h2>
+            
+            <div class="function-card">
+                <h3>Trazabilidad Blockchain</h3>
+                <div id="nftList" class="nft-list">
+                    <!-- Contenido dinámico -->
+                </div>
+            </div>
+            
+            <div class="function-card">
+                <h3>Generar Reporte de Auditoría</h3>
+                <div class="form-group">
+                    <label>Fecha de inicio</label>
+                    <input type="date" id="auditStartDate">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de fin</label>
+                    <input type="date" id="auditEndDate">
+                </div>
+                <button id="generateAuditReportBtn" class="primary-btn">Generar Reporte</button>
+                <div id="auditReportResult" class="result-container hidden"></div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="exit-btn secondary-btn">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Administrador -->
+    <div id="adminScreen" class="screen">
+        <div class="dashboard">
+            <h2>Administrador</h2>
+            
+            <div class="function-card">
+                <h3>Usuarios Activos</h3>
+                <div id="activeUsersList" class="user-list">
+                    <!-- Contenido dinámico -->
+                </div>
+            </div>
+            
+            <div class="function-card">
+                <h3>Configuración del sistema</h3>
+                <div class="system-settings">
+                    <div class="setting-item">
+                        <label for="systemNotifications">Notificaciones del sistema:</label>
+                        <input type="checkbox" id="systemNotifications" checked>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label>Notificar a usuarios:</label>
+                        <div id="notificationUsersList" class="notification-users">
+                            <!-- Contenido dinámico -->
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="notificationMessage">Mensaje de notificación:</label>
+                        <textarea id="notificationMessage" rows="3" placeholder="Ej: Temperatura de lote #40 bajo del margen establecido"></textarea>
+                    </div>
+                </div>
+                <button id="sendNotificationsBtn" class="primary-btn">Enviar Notificaciones</button>
+                <div id="notificationResult" class="result-container hidden">
+                    <div id="notificationItemsContainer"></div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="exit-btn secondary-btn">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales -->
+    <div id="qrModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Escaneo de Código QR</h3>
+            <div id="qrModalContent"></div>
+            <button id="closeQrModal" class="primary-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="reportModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Detalle del Reporte</h3>
+            <div id="reportModalContent"></div>
+            <button id="closeReportModal" class="primary-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+:root {
+    --primary-color: #006f7f;
+    --primary-hover: #005766;
+    --secondary-color: #e2e8f0;
+    --secondary-hover: #cbd5e0;
+    --accent-color: #FF4252;
+    --error-color: #e53e3e;
+    --success-color: #38a169;
+    --warning-color: #dd6b20;
+    --info-color: #4299e1;
+    --text-color: #2d3748;
+    --text-light: #718096;
+    --bg-color: #f5f7fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+/* Pantallas */
+.screen {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Contenedores */
+.form-container, .dashboard {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Botones */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-hover);
+}
+
+.text-link {
+    color: var(--info-color);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    transition: color 0.3s;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Tarjetas de función */
+.function-card {
+    background: white;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.function-card h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+/* Resultados y sensores */
+.result-container, .activities-log {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8fafc;
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.sensor-reading {
+    padding: 10px;
+    background: #f0fff4;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.sensor-reading.warning {
+    background: #fffaf0;
+    border-left: 4px solid var(--warning-color);
+}
+
+/* Dashboard Supervisor */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.dashboard-item {
+    padding: 15px;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+.metric {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.metric span {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--text-light);
+}
+
+.trend {
+    font-size: 12px;
+}
+
+.trend.up {
+    color: var(--success-color);
+}
+
+.trend.down {
+    color: var(--error-color);
+}
+
+/* Integraciones */
+.integration-status {
+    margin-top: 15px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.status.active {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+/* Auditor - Blockchain */
+.nft-list {
+    margin-top: 15px;
+}
+
+.nft-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-color);
+    align-items: center;
+}
+
+.nft-status {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.nft-status.verified {
+    background: #f0fff4;
+    color: var(--success-color);
+}
+
+.nft-status.pending {
+    background: #fffaf0;
+    color: var(--warning-color);
+}
+
+.activities-log ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.activities-log li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+/* Compliance */
+.compliance-metrics {
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    background: var(--secondary-color);
+    border-radius: 10px;
+    margin: 8px 0;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    border-radius: 10px;
+    background: var(--primary-color);
+}
+
+.percentage {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    line-height: 20px;
+    color: white;
+    font-size: 12px;
+}
+
+/* Administrador */
+.user-list {
+    margin-top: 15px;
+}
+
+.user-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid var(--secondary-color);
+    align-items: center;
+}
+
+.user-role {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+.user-role.operario {
+    background-color: var(--info-color);
+}
+
+.user-role.supervisor {
+    background-color: #9f7aea;
+}
+
+.user-role.auditor {
+    background-color: #ed8936;
+}
+
+.user-role.admin {
+    background-color: var(--primary-color);
+}
+
+.system-settings {
+    margin-top: 15px;
+}
+
+.setting-item {
+    margin-bottom: 15px;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* Navegación */
+.nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+/* Modales */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#errorModal .modal-content p {
+    color: var(--error-color);
+}
+
+/* Nuevos estilos para notificaciones */
+.notification-users {
+    margin-top: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.notification-user {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.notification-user:last-child {
+    border-bottom: none;
+}
+
+.notification-user input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.notification-user label {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 80px;
+}
+
+textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Reportes */
+.report-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.report-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.report-id {
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.report-date {
+    color: var(--text-light);
+    min-width: 100px;
+}
+
+.report-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.report-status.verified {
+    background-color: #f0fff4;
+    color: var(--success-color);
+}
+
+.report-status.pending {
+    background-color: #fffaf0;
+    color: var(--warning-color);
+}
+
+.view-report-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+/* Estilos para notificaciones individuales */
+.notification-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+    position: relative;
+}
+
+.notification-item h4 {
+    margin-bottom: 5px;
+}
+
+.notification-item p {
+    margin-bottom: 5px;
+}
+
+.notification-item ul {
+    margin-left: 20px;
+}
+
+.delete-notification-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--error-color);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-notification-btn:hover {
+    background: #c53030;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
