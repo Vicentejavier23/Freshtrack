@@ -39,28 +39,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Manejar login
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('emailInput').value;
-        const password = document.getElementById('passwordInput').value;
         
-        // Simulación de autenticación
-        const user = users.find(u => u.email.toLowerCase() === normalizedEmail);
+ loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('emailInput').value;
+    const password = document.getElementById('passwordInput').value;
+    
+    // Buscar usuario por email
+    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
-if (user) {
-    if (
-        (user.role === 'operario' && password === 'ope') ||
-        (user.role === 'supervisor' && password === 'sup') ||
-        (user.role === 'auditor' && password === 'aud') ||
-        (user.role === 'admin' && password === 'adm')
-    ) {
-        showScreen(user.role + 'Screen');
+    if (user) {
+        // Verificar contraseña según rol
+        let passwordValid = false;
+        switch(user.role) {
+            case 'operario': passwordValid = password === 'ope'; break;
+            case 'supervisor': passwordValid = password === 'sup'; break;
+            case 'auditor': passwordValid = password === 'aud'; break;
+            case 'admin': passwordValid = password === 'adm'; break;
+        }
+
+        if (passwordValid) {
+            showScreen(user.role + 'Screen');
+        } else {
+            alert('Contraseña incorrecta');
+        }
     } else {
-        alert('Contraseña incorrecta');
+        alert('Email no registrado');
     }
-} else {
-    alert('Email no registrado');
-}
+});
 
  
     
