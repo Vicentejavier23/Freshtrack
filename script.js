@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
             alert('Credenciales incorrectas');
         }
-    });
+ 
     
     // Botones de volver
     exitButtons.forEach(btn => {
