@@ -45,17 +45,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('passwordInput').value;
         
         // Simulación de autenticación
-        if (password === 'ope' && email.includes('operario')) {
-                showScreen('operatorScreen');
-            } else if (password ==='sup' && email.includes('supervisor')) {
-                showScreen('supervisorScreen');
-            } else if (password ==='aud' && email.includes('auditor')) {
-                showScreen('auditorScreen');
-            } else if (password ==='adm' && email.includes('admin')) {
-                showScreen('adminScreen');
-            } else {
-            alert('Credenciales incorrectas o Rol no reconocido');
-        }
+        const user = users.find(u => u.email.toLowerCase() === normalizedEmail);
+
+if (user) {
+    if (
+        (user.role === 'operario' && password === 'ope') ||
+        (user.role === 'supervisor' && password === 'sup') ||
+        (user.role === 'auditor' && password === 'aud') ||
+        (user.role === 'admin' && password === 'adm')
+    ) {
+        showScreen(user.role + 'Screen');
+    } else {
+        alert('Contraseña incorrecta');
+    }
+} else {
+    alert('Email no registrado');
+}
+
  
     
     // Botones de volver
