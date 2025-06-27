@@ -47,11 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Simulación de autenticación
         if (password === 'operario' && email.includes('operario')) {
                 showScreen('operatorScreen');
-            } else if (password==='supervisor' &&email.includes('supervisor')) {
+            } else if (password ==='supervisor' && email.includes('supervisor')) {
                 showScreen('supervisorScreen');
-            } else if (password==='auditor' && email.includes('auditor')) {
+            } else if (password ==='auditor' && email.includes('auditor')) {
                 showScreen('auditorScreen');
-            } else if (password==='admin' &&email.includes('admin')) {
+            } else if (password ==='admin' && email.includes('admin')) {
                 showScreen('adminScreen');
             } else {
                 alert('Rol no reconocido');
