@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('passwordInput').value;
         
         // Simulación de autenticación
-        if (password === 'operario' && email.includes('operario')) {
+        if (password === 'ope' && email.includes('operario')) {
                 showScreen('operatorScreen');
-            } else if (password ==='supervisor' && email.includes('supervisor')) {
+            } else if (password ==='sup' && email.includes('supervisor')) {
                 showScreen('supervisorScreen');
-            } else if (password ==='auditor' && email.includes('auditor')) {
+            } else if (password ==='aud' && email.includes('auditor')) {
                 showScreen('auditorScreen');
-            } else if (password ==='admin' && email.includes('admin')) {
+            } else if (password ==='adm' && email.includes('admin')) {
                 showScreen('adminScreen');
             } else {
             alert('Credenciales incorrectas o Rol no reconocido');
