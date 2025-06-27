@@ -54,10 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (password ==='admin' && email.includes('admin')) {
                 showScreen('adminScreen');
             } else {
-                alert('Rol no reconocido');
-            }
-            } else {
-            alert('Credenciales incorrectas');
+            alert('Credenciales incorrectas o Rol no reconocido');
         }
  
     
