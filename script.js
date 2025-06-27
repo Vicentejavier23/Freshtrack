@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert('Rol no reconocido');
             }
-        } else {
+            } else {
             alert('Credenciales incorrectas');
         }
     });
