@@ -38,48 +38,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Manejar login - Versión completamente corregida
+    // Manejar login
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        const email = document.getElementById('emailInput').value;
+        const password = document.getElementById('passwordInput').value;
         
-        const emailInput = document.getElementById('emailInput');
-        const passwordInput = document.getElementById('passwordInput');
-        
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-        
-        // Validación básica
-        if (!email || !password) {
-            alert('Por favor complete ambos campos');
-            return;
-        }
-        
-        // Buscar usuario
-        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-        
-        if (!user) {
-            alert('Email no registrado');
-            emailInput.focus();
-            return;
-        }
-        
-        // Verificar contraseña según rol
-        let expectedPassword = '';
-        switch(user.role) {
-            case 'operario': expectedPassword = 'ope'; break;
-            case 'supervisor': expectedPassword = 'sup'; break;
-            case 'auditor': expectedPassword = 'aud'; break;
-            case 'admin': expectedPassword = 'adm'; break;
-        }
-        
-        if (password === expectedPassword) {
-            showScreen(user.role + 'Screen');
-            // Limpiar formulario después de login exitoso
-            loginForm.reset();
+        // Simulación de autenticación
+        if (password === '1234') {
+            if (email.includes('operario')) {
+                showScreen('operatorScreen');
+            } else if (email.includes('supervisor')) {
+                showScreen('supervisorScreen');
+            } else if (email.includes('auditor')) {
+                showScreen('auditorScreen');
+            } else if (email.includes('admin')) {
+                showScreen('adminScreen');
+            } else {
+                alert('Rol no reconocido');
+            }
         } else {
-            alert('Contraseña incorrecta');
-            passwordInput.value = '';
-            passwordInput.focus();
+            alert('Credenciales incorrectas');
         }
     });
     
@@ -188,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>${report.content}</p>
                 </div>
             `;
-            document.getElementById('reportModal').classList.remove('hidden');
+            document.getElementById('reportModal').classList.add('active');
         }
     }
     
@@ -352,18 +331,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cerrar modales
     document.getElementById('closeQrModal')?.addEventListener('click', function() {
-        document.getElementById('qrModal').classList.add('hidden');
+        document.getElementById('qrModal').classList.remove('active');
     });
     
     document.getElementById('closeReportModal')?.addEventListener('click', function() {
-        document.getElementById('reportModal').classList.add('hidden');
+        document.getElementById('reportModal').classList.remove('active');
     });
     
     // Cerrar modales al hacer clic fuera
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
-                modal.classList.add('hidden');
+                modal.classList.remove('active');
             }
         });
     });
