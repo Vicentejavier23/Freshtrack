@@ -38,37 +38,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Manejar login
+    // Manejar login - Versión completamente corregida
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         
- loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('emailInput').value;
-    const password = document.getElementById('passwordInput').value;
-    
-    // Buscar usuario por email
-    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-
-    if (user) {
-        // Verificar contraseña según rol
-        let passwordValid = false;
-        switch(user.role) {
-            case 'operario': passwordValid = password === 'ope'; break;
-            case 'supervisor': passwordValid = password === 'sup'; break;
-            case 'auditor': passwordValid = password === 'aud'; break;
-            case 'admin': passwordValid = password === 'adm'; break;
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        
+        // Validación básica
+        if (!email || !password) {
+            alert('Por favor complete ambos campos');
+            return;
         }
-
-        if (passwordValid) {
+        
+        // Buscar usuario
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+        
+        if (!user) {
+            alert('Email no registrado');
+            emailInput.focus();
+            return;
+        }
+        
+        // Verificar contraseña según rol
+        let expectedPassword = '';
+        switch(user.role) {
+            case 'operario': expectedPassword = 'ope'; break;
+            case 'supervisor': expectedPassword = 'sup'; break;
+            case 'auditor': expectedPassword = 'aud'; break;
+            case 'admin': expectedPassword = 'adm'; break;
+        }
+        
+        if (password === expectedPassword) {
             showScreen(user.role + 'Screen');
+            // Limpiar formulario después de login exitoso
+            loginForm.reset();
         } else {
             alert('Contraseña incorrecta');
+            passwordInput.value = '';
+            passwordInput.focus();
         }
-    } else {
-        alert('Email no registrado');
-    }
-});
-
- 
+    });
     
     // Botones de volver
     exitButtons.forEach(btn => {
