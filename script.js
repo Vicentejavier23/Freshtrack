@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>${report.content}</p>
                 </div>
             `;
-            document.getElementById('reportModal').classList.add('active');
+            document.getElementById('reportModal').classList.remove('hidden');
         }
     }
     
@@ -352,18 +352,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cerrar modales
     document.getElementById('closeQrModal')?.addEventListener('click', function() {
-        document.getElementById('qrModal').classList.remove('active');
+        document.getElementById('qrModal').classList.add('hidden');
     });
     
     document.getElementById('closeReportModal')?.addEventListener('click', function() {
-        document.getElementById('reportModal').classList.remove('active');
+        document.getElementById('reportModal').classList.add('hidden');
     });
     
     // Cerrar modales al hacer clic fuera
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
-                modal.classList.remove('active');
+                modal.classList.add('hidden');
             }
         });
     });
